@@ -11,7 +11,7 @@ on:
 jobs:
   simple_deployment_pipeline:
     runs-on: windows-latest
-    if: github.event_name == 'pull_request' || (github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip'))
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

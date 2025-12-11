@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Discord Notification
         if: success()
-        uses: Ilshidur/action-discord@v3
+        uses: Ilshidur/action-discord@v2.0.0
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           message: |

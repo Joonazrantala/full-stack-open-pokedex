@@ -23,10 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Discord Notification
-        uses: rjstone/discord-webhook-notify@v2
         if: success()
+        uses: Ilshidur/action-discord@v3
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          content: |
-           Deployment job finished with status: ${{ needs.main.result }}
-           Commit: ${{ github.sha }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          message: |
+            ✔ Deployment succeeded!
+            Status: ${{ needs.main.result }}
+            Commit: ${{ github.sha }}

@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   main:
-    name: Deploy to Render
+    name: Deploy to Renderss
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

@@ -7,10 +7,11 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize]
-    
+
 jobs:
   simple_deployment_pipeline:
     runs-on: windows-latest
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip'))
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,7 +26,7 @@ jobs:
       - run: npm test
   tag_release:
     needs: [simple_deployment_pipeline]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(join(github.event.commits.*.message), '#skip')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

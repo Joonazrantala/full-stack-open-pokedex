@@ -22,12 +22,9 @@ jobs:
     needs: [main]
     runs-on: ubuntu-latest
     steps:
-      - name: Discord Notification
-        if: success()
-        uses: Ilshidur/action-discord@v2.0.0
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: |
-            ✔ Deployment succeeded!
-            Status: ${{ needs.main.result }}
-            Commit: ${{ github.sha }}
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'

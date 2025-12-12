@@ -2,7 +2,7 @@ name: ping server for health check
 
 on:
   schedule:
-    - cron: "0-59 * * * *"
+    - cron: "* * * * *"
 
 jobs:
   ping:
